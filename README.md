@@ -6,7 +6,7 @@ Library to cache hyperlinks and load cached version
 USAGE
 -----
 ```js
-$('a:not(.external)').inspiredMenu({
+$('a:not(.external)').linkCache({
 	progressCallback: function() {
 		$(this).click(function(e){
 			e.preventDefault();
