@@ -1,5 +1,5 @@
 /*
- * inspiredMenu
+ * linkCache
  * 
  * a jQuery plugin to asynchronously load link content
  *
