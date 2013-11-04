@@ -41,3 +41,8 @@ Default: `function() {}`
 Defines the element which is cached and replaced.
 
 Default: `'#content'`
+
+
+## TODO
+
+[ ] detect and ignore external links
