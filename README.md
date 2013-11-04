@@ -36,8 +36,10 @@ Called when loading is complete. Use this, for instance, to fade out a loading s
 
 Default: `function() {}`
 
-### selector
+### contentSelector
 
-Defines the element which is cached and replaced.
+Selects the element which is cached and replaced. Default: `'#content'`
 
-Default: `'#content'`
+### activeLinkClass
+
+The class of the active link. Default: `'current-menu-item'`

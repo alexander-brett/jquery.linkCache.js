@@ -21,13 +21,23 @@
 	    progressCallback: function(){
 		$(this).click(function(e){
 		    e.preventDefault();
-		    $(external.selector)
-			.replaceWith($(e.target).data('content'))
-			.remove();
+		    //check we're not hitting the same link
+		    if(!$(e.target).is("."+external.activeLinkClass)){
+			//set the active link class on the new link
+			$("."+external.activeLinkClass)
+			    .removeClass(external.activeLinkClass);
+			$(e.target).addClass(external.activeLinkClass);
+			//swap the content
+			$(external.contentSelector)
+			    .replaceWith($(e.target).data('content'))
+			    .remove();
+		    }
 		})
 	    },
 	    completeCallback: function(){},
-	    selector: '#content'
+	    contentSelector: '#content',
+	    activeLinkClass: 'current-menu-item'
+	    
 	}
 
 	var external = $.extend({}, defaults, options );
@@ -58,8 +68,10 @@
 			function(returnedData) {
 			    $(self).data({
 				'loaded': 1, 
-				'content': $(returnedData).find(external.selector)[0]
-				    || $(returnedData).filter(external.selector)[0]
+				'content': $(returnedData)
+				    .find(external.contentSelector)[0]
+				    || $(returnedData)
+				    .filter(external.contentSelector)[0]
 			    });
 			    internal.doCallback.call(self);
 			});
