@@ -19,11 +19,15 @@
 	//external
 	var defaults = {
 	    progressCallback: function(){
-		console.log("progress",internal.numberLoaded)
+		$(this).click(function(e){
+		    e.preventDefault();
+		    $(external.selector)
+			.replaceWith($(e.target).data('content'))
+			.remove();
+		})
 	    },
-	    completeCallback: function(){
-		console.log("complete",internal.numberLoaded)
-	    }
+	    completeCallback: function(){},
+	    selector: '#content'
 	}
 
 	var external = $.extend({}, defaults, options );
@@ -48,23 +52,20 @@
 	     */
 	    loadLinkContent: function() {
 		var self=this
-		if($(self).data('loaded')==1 ){
-		    internal.doCallback.call(self);
-		} else {
-		    $.get(
-			$(self).attr("href"), 
-			{inspired_content_only: 1},
+		$(self).data('loaded')==1 ? internal.doCallback.call(self)
+		    : $.get(
+			$(self).attr("href"),
 			function(returnedData) {
 			    $(self).data({
 				'loaded': 1, 
-				'content': returnedData
+				'content': $(returnedData).find(external.selector)[0]
+				    || $(returnedData).filter(external.selector)[0]
 			    });
 			    internal.doCallback.call(self);
 			});
-		}
 	    }
 	}
-
+	
 	/*
 	 * Procedure
 	 */
