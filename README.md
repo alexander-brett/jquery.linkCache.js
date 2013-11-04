@@ -43,8 +43,6 @@ Selects the element which is cached and replaced. Default: `'#content'`
 ### activeLinkClass
 
 The class of the active link. Default: `'current-menu-item'`
-=======
-Default: `'#content'`
 
 
 ## TODO
