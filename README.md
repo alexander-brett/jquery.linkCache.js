@@ -3,15 +3,41 @@ jquery.linkCache.js
 
 Library to cache hyperlinks and load cached version
 
-USAGE
------
+## USAGE
+
 ```js
-$('a:not(.external)').inspiredMenu({
-	progressCallback: function() {
-		$(this).click(function(e){
-			e.preventDefault();
-			$('#content').replaceWith($(this).data('content')).remove();
-		})
-	}
-});
+myLinks = $('a:not(.external)')
+
+myLinks.linkCache();
 ```
+
+## OPTIONS
+
+### progressCallback
+
+Called each time a link loads. Use this to bind handlers which animate your menus etc.
+
+Default:
+
+```js
+function(){
+	$(this).click(function(e){
+		e.preventDefault();
+		$(external.selector)
+			.replaceWith($(e.target).data('content'))
+			.remove();
+	})
+    }
+```
+
+### completeCallback
+
+Called when loading is complete. Use this, for instance, to fade out a loading screen
+
+Default: `function() {}`
+
+### selector
+
+Defines the element which is cached and replaced.
+
+Default: `'#content'`
